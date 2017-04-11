@@ -20,9 +20,13 @@
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react-native": "1.9.1",
     "jest": "19.0.2",
+    "react-native-debugger-open": "^0.3.4",
     "react-test-renderer": "15.4.2"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "scripts": {
+  "postinstall": "rndebugger-open"
   }
 }

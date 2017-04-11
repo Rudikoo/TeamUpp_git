@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { Header, Body, Title, Container, Content, Thumbnail } from 'native-base';
 
-export default class About extends Component {
+export default class Einstellungen extends Component {
 
   renderHeader(){
     const { title } = this.props;
@@ -27,9 +27,8 @@ export default class About extends Component {
         { this.renderHeader() }
         <Content style = { styles.container }>
           <Text style = { styles.welcome }>
-            Wir sind About!
+            Hier landen die Einstellungen
           </Text>
-          <Thumbnail source={require('./images/logo.png')} />
         </Content>
       </Container>
     );

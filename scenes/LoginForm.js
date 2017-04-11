@@ -29,7 +29,7 @@ export default class LoginForm extends Component {
         <TouchableOpacity style={styles.buttonContainer} onPress = { ()=> { Actions.tabbar ()}}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-        <Text style={styles.link} onPress = { ()=> { Actions.Register ()}}>Noch nicht registriert?</Text>
+        <Text style={styles.link} onPress = { ()=> { Actions.RegisterView ()}}>Noch nicht registriert?</Text>
       </View>
     );
   }
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: 'rgba(0,0,0,0.9)',
+    color: 'rgba(255,255,255,0.9)',
     fontSize: 20,
     fontWeight: '900'
   },
