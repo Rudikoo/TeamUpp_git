@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Actions, Scene, Router, Switch, Modal } from 'react-native-router-flux';
+import { Actions, Scene, Router, Switch, Modal, ActionConst } from 'react-native-router-flux';
 import { Icon } from 'native-base';
 import Einstellungen from './scenes/Einstellungen';
 import TeamUpp from './scenes/TeamUpp';
@@ -45,7 +45,7 @@ class Main extends Component {
     this.scenes = Actions.create(
       <Scene key = "root" tabs = { true }>
         <Scene key = "menus">
-          <Scene key = "LoginView" component = { LoginView } title = "LoginView" hideNavBar = { true }/>
+          <Scene key = "LoginView" component = { LoginView } title = "LoginView" type={ActionConst.REPLACE} hideNavBar = { true }/>
           <Scene key = "RegisterView" component = { RegisterView } title = "RegisterView" hideNavBar = { true }/>
           <Scene key = "tabbar" tabs = { true } tabBarStyle = {{ backgroundColor:'#f7f7f7' }}>
             <Scene key = "TeamUpp" store = { QuestionStore } component = { TeamUpp } title = "TeamUpp" icon = { TabIcon } hideNavBar = { true }/>

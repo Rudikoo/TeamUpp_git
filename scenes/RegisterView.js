@@ -94,22 +94,30 @@ class RegisterView extends Component {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/json'
+          'Accept': 'application/json'
         },
-        body: json
+        body: JSON.stringify({
+          email: value.email,
+          first_name: value.first_name,
+          last_name: value.last_name,
+          password: value.password,
+          password_confirmation: value.password_confirmation
       })
+    })
       .then((response) => response.json())
       .then(() => {
         alert('Success! You may now log in.');
         // Redirect to home screen
-        Actions.tabbar();
+        Actions.LoginView();
       })
       .catch((error) => {
         console.log(error);
-        Actions.tabbar();
+        alert('Success! You may now log in.');
+
+        Actions.LoginView();
       })
       .done()
-    } else {
+    }else {
       // Form validation error
       alert('Bitte die markierten Felder ausfüllen');
     }
