@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, ScrollView, StyleSheet, TouchableHighlight, Text, KeyboardAvoidingView, View, Image, AlertIOS } from 'react-native';
+import { AsyncStorage, ScrollView, StyleSheet, TouchableHighlight, Text, KeyboardAvoidingView, View, Image, AlertIOS, TouchableOpacity, Alert } from 'react-native';
 import { Header, Body, Title, Container, Content, Thumbnail } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -7,15 +7,20 @@ var STORAGE_KEY = 'token';
 
 export default class Einstellungen extends Component {
 
-  async _userLogout() {
-    try {
-      await AsyncStorage.removeItem(STORAGE_KEY);
-      AlertIOS.alert("Logout Success!")
-      Actions.LoginView()
-    } catch (error) {
-      console.log('AsyncStorage error: ' + error.message);
-    }
-  }
+  getProtectedQuote() {
+  AsyncStorage.getItem('token').then((token) => {
+    // TODO: localhost doesn't work because the app is running inside an emulator. Get the IP address with ifconfig.
+    fetch('http://dbserver.team-upp.com/api/jokes', {
+      method: 'GET',
+      headers: { 'Authorization': 'Bearer ' + token }
+    })
+    .then((response) => response.text())
+    .then((quote) => {
+      Alert.alert('Chuck Norris Quote', quote)
+    })
+    .done();
+  })
+}
 
   _handleLogOut = () => {
     AsyncStorage.removeItem('token');
@@ -49,6 +54,9 @@ export default class Einstellungen extends Component {
         <TouchableHighlight style={styles.buttonContainer} onPress={this._handleLogOut}>
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableHighlight>
+        <TouchableOpacity onPress={this.getProtectedQuote}>
+          <Text> Get Chuck Norris quote! </Text>
+        </TouchableOpacity>
       </ScrollView>
     );
   }

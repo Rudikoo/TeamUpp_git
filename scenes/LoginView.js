@@ -56,6 +56,14 @@ class LoginView extends Component {
     })
   }
 
+  async saveItem(token, selectedValue) {
+    try {
+      await AsyncStorage.setItem(token, selectedValue);
+    } catch (error) {
+      console.error('AsyncStorage error: ' + error.message);
+    }
+  }
+
   async _onValueChange(item, selectedValue) {
       try {
         await AsyncStorage.setItem(item, selectedValue);
@@ -84,10 +92,8 @@ class LoginView extends Component {
     //    console.log(responseData.error)
         alert('invalid_credentials')
       } else {
-      this._onValueChange(STORAGE_KEY, responseData.token)
-      AsyncStorage.setItem('token', responseData.token)
+      this.saveItem('token', responseData.token),
     //  console.log(responseData)
-      AsyncStorage.getItem('token').then((res) => console.log(res))
       Actions.tabbar();
     }
     })
