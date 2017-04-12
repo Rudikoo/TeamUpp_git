@@ -80,11 +80,12 @@ class LoginView extends Component {
     })
     .then((response) => response.json())
     .then((responseData) => {
-      if (responseData = ''){
+      if (responseData.error){
+    //    console.log(responseData.error)
         alert('invalid_credentials')
       } else {
       this._onValueChange(STORAGE_KEY, responseData.token)
-      console.log(responseData)
+    //  console.log(responseData)
       AsyncStorage.getItem('token').then((res) => console.log(res))
       Actions.tabbar();
     }
