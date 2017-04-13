@@ -9,7 +9,6 @@ export default class Einstellungen extends Component {
 
   getProtectedQuote() {
   AsyncStorage.getItem('token').then((token) => {
-    // TODO: localhost doesn't work because the app is running inside an emulator. Get the IP address with ifconfig.
     fetch('http://dbserver.team-upp.com/api/jokes', {
       method: 'GET',
       headers: { 'Authorization': 'Bearer ' + token }
